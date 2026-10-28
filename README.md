@@ -71,6 +71,7 @@ LED panels supported
 |  ICND1065/2153/2055, DP3264, SM16380sh          | | | | |
 | | | | | |
 | P6 RGB with SM16169SH driver<br />(RP2040 only)   |     HUB75    |    32x32   |     1/8     | DMD_SM16169.h <br /> template `RGB32x32_S8_SM16169`, used as plain DMD_RGB |
+| P6 RGB Lampro module<br />(SE2603 + DP32019B, RP2040 only)   |     HUB75    |    32x32   |     1/8     | DMD_SPWM_Driver_RP.h (ICND1065 protocol) <br /> template `RGB32x32_S8_Lampro`, used as plain DMD_RGB, example `dmd_rgb_lampro_p6` |
 
 Read more about supported panels in the [Wiki/Supported panels](https://github.com/board707/DMD_STM32/wiki/quick_start#supported-panels). The set of supported matrices is constantly updated.
 

@@ -99,6 +99,7 @@
 #define RGB104x52_S13_funnymind   	4,104,52,13,64                 // 104x52 s13 pixbase 4, SHIFT_REG, from funnymind, issue #145
 #define RGB172x86_s43_shadowpho     33,176,86,43,65               // 172x86 s43, SHIFT_REG, from shadowpho, issue #192
 #define RGB32x32_S8_SM16169		3,32,32,8,128	// pattern ID must stay unique (3 = maxmurugan, pixel order is set in DMD_SM16169.h). P6 32x32 1/8, SM16169SH SPWM driver + DP32019 (138) mux, RP2040 only, driver in DMD_SM16169.h
+#define RGB32x32_S8_Lampro		3,32,32,8,129	// P6 32x32 1/8 Lampro module, SE2603 SPWM driver (ICND1065 protocol) + DP32019B (138) mux, RP2040 only, driver in DMD_SPWM_Driver_RP.h
 
 /*--------------------------------------------------------------------------------------*/
 template <int MUX_CNT, int P_Width, int P_Height, int SCAN, int SCAN_TYPE, int... Pars>
@@ -1072,6 +1073,31 @@ class DMD_RGB<RGB32x32_S8_SM16169, COL_DEPTH> : public DMD_RGB_BASE2<COL_DEPTH>
 			{}
 	};
 #endif
+//--------------------------------------------------------------------------------------
+// P6 32x32 1/8 Lampro module
+//
+// Drivers SE2603 (SPWM) + DP32019B (138 mux)
+//
+// SE2603 has no public datasheet. The panel is blank with ordinary driving
+// and works with ICND1065 protocol, so RGB32x32_S8_Lampro is ICND1065 driver class
+// with pattern 3 pixel order (32-pixel pixbase, lower half-row first,
+// the same as RGB32x32_S8_maxmurugan). Tested on Raspberry Pi Pico.
+// The class is defined in DMD_SPWM_Driver_RP.h for RP2040.
+//--------------------------------------------------------------------------------------/
+#if !(defined(ARDUINO_ARCH_RP2040))
+template<int COL_DEPTH>
+class DMD_RGB<RGB32x32_S8_Lampro, COL_DEPTH> : public DMD_RGB_BASE2<COL_DEPTH>
+	{
+	static_assert(COL_DEPTH < 0, "RGB32x32_S8_Lampro panel (SE2603 SPWM driver) is supported on RP2040 boards only");
+	public:
+		DMD_RGB(uint8_t* mux_list, byte _pin_nOE, byte _pin_SCLK, uint8_t* pinlist,
+			byte panelsWide, byte panelsHigh, bool d_buf = false) :
+			DMD_RGB_BASE2<COL_DEPTH>(3, mux_list, _pin_nOE, _pin_SCLK, pinlist,
+				panelsWide, panelsHigh, d_buf, COL_DEPTH, 8, 32, 32)
+			{}
+	};
+#endif
+
 //--------------------------------------------------------------------------------------
 /*template <int MUX_CNT, int P_Width, int P_Height, int SCAN, int SCAN_TYPE, int COL_DEPTH>
 class DMD_RGB_SHIFTREG_ABC : public DMD_RGB<MUX_CNT, P_Width, P_Height, SCAN, SCAN_TYPE,  COL_DEPTH>

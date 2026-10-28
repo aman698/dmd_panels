@@ -5,6 +5,10 @@
    Driver class DMD_RGB_SM16169 (SM16380SH protocol) in DMD_SM16169.h, settings SM16169_REG_PROFILE
    and SM16169_PIXEL_PATTERN; setBrightness() supported.
  - dmd_spwm.pio.h: helper functions made static inline.
+ - RP2040: P6 32x32 1/8 Lampro module (SE2603 SPWM driver + DP32019B mux), template RGB32x32_S8_Lampro.
+   The panel is selected as plain DMD_RGB <RGB32x32_S8_Lampro, COLOR_4BITS>, no extra include needed.
+   SE2603 has no public datasheet, the panel works with ICND1065 driver class and pattern 3.
+   Example: examples/STM32F4_RP2040/dmd_rgb_lampro_p6.
 
 ## [1.2.16] - 2026-07-27
  - PR 219 from @kingdo9 - register config finder.

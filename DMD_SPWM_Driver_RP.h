@@ -1094,6 +1094,24 @@ protected:
 	}
 };
 
+/*--------------------------------------------------------------------------------------*/
+// P6 32x32 1/8 Lampro module, SE2603 driver + DP32019B (138) mux
+// template RGB32x32_S8_Lampro (see DMD_Panel_Templates.h)
+// SE2603 has no public datasheet, the panel works with ICND1065 protocol
+// and pattern 3 pixel order (3,32,32,8,3 - the same as RGB32x32_S8_maxmurugan).
+/*--------------------------------------------------------------------------------------*/
+template <int COL_DEPTH>
+class DMD_RGB<RGB32x32_S8_Lampro, COL_DEPTH> : public DMD_RGB_ICN1065<3,32,32,8,3, COL_DEPTH>
+{
+public:
+	DMD_RGB(uint8_t *mux_list, byte _pin_nOE, byte _pin_SCLK, uint8_t *pinlist,
+			byte panelsWide, byte panelsHigh, bool d_buf = false) :
+		DMD_RGB_ICN1065<3,32,32,8,3, COL_DEPTH>
+			(mux_list, _pin_nOE, _pin_SCLK, pinlist, panelsWide, panelsHigh, d_buf)
+	{
+	}
+};
+
 // panels selected by template, e.g. RGB32x32_S8_SM16169
 #include "DMD_SM16169.h"
 

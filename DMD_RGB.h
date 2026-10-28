@@ -543,7 +543,7 @@ void drawPixel(int16_t x, int16_t y, uint16_t c) override {
 #include "DMD_Panel_Templates.h"
 #endif
 
-// SPWM driver panels selected by template (RGB32x32_S8_SM16169)
+// SPWM driver panels selected by template (RGB32x32_S8_SM16169, RGB32x32_S8_Lampro)
 #if (defined(ARDUINO_ARCH_RP2040)) && defined(DMD_PANEL_TEMPLATES_H)
 #include "DMD_SPWM_Driver_RP.h"
 #endif

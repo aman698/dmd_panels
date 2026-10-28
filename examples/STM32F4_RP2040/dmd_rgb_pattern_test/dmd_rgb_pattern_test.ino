@@ -71,6 +71,7 @@ uint8_t custom_rgbpins[] = { 11, 0,1,2,3,4,5 }; // CLK, R0, G0, B0, R1, G1, B1
 // RGB32x16plainS2         - 32x16 1/2 Binary mux
 // RGB32x16plainS2_DIRECT  - 32x16 1/2 Direct mux
 // RGB32x32_S8_SM16169     - P6 32x32 1/8, SM16169SH SPWM drivers (RP2040 only)
+// RGB32x32_S8_Lampro      - P6 32x32 1/8 Lampro module, SE2603 SPWM drivers (RP2040 only)
 
 DMD_RGB <RGB32x16plainS4, COLOR_4BITS> dmd(mux_list, DMD_PIN_nOE, DMD_PIN_SCLK, custom_rgbpins, DISPLAYS_ACROSS, DISPLAYS_DOWN, ENABLE_DUAL_BUFFER);
 

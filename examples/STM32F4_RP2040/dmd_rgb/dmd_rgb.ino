@@ -80,6 +80,7 @@ DMD_RGB <RGB64x32plainS16, COLOR_4BITS> dmd(mux_list, DMD_PIN_nOE, DMD_PIN_SCLK,
 // <RGB80x40plainS20> - 80x40 matrix with 20scans
 // <RGB64x64plainS32> - 64x64 matrix with 32scans
 // <RGB32x32_S8_SM16169> - P6 32x32 1/8 with SM16169SH SPWM drivers (RP2040 only)
+// <RGB32x32_S8_Lampro> - P6 32x32 1/8 Lampro module with SE2603 SPWM drivers (RP2040 only)
 // Color depth - <COLOR_4BITS_Packed>(STM32 only), <COLOR_4BITS> or <COLOR_1BITS> 
 
 
